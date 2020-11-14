@@ -6,7 +6,7 @@
   "dependencies": {
     "kuroshiro": "^1.1.2",
     "kuroshiro-analyzer-kuromoji": "^1.1.0",
-    "parcel": "^1.12.4",
+    "parcelgit ": "^1.12.4",
     "pug": "^3.0.0",
     "sass": "^1.29.0"
   },
@@ -17,7 +17,7 @@
   },
   "scripts": {
     "dev": "cp -r ./dict ./dist && parcel ./src/index.pug --open",
-    "start": "cp -r ./dict ./dist && parcel ./src/index.pug",
+    "start": "cp -r ./dict ./dist && parcel ./src/index.pug --port $process.env.PORT",
     "build": "rm -f ./build/*　&& cp -r ./dict ./build && parcel build ./src/index.pug --public-url ./ --no-content-hash -d ./build "
   },
   "author": "",
