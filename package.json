@@ -17,6 +17,7 @@
   },
   "scripts": {
     "dev": "cp -r ./dict ./dist && parcel ./src/index.pug --open",
+    "star": "cp -r ./dict ./dist && parcel ./src/index.pug",
     "build": "rm -f ./build/*　&& cp -r ./dict ./build && parcel build ./src/index.pug --public-url ./ --no-content-hash -d ./build "
   },
   "author": "",
