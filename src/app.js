@@ -40,14 +40,14 @@ function activateTranslateButton(){
 }
 
 function loadingNotice(){
-  const afterActivateText = "起動中です。少々お待ち下さい。初回の起動には10秒程度かかる場合があります。"
-  dist.innerText = afterActivateText
+  const afterActivateText = "<span id = 'loading'>★</span>起動中です。少々お待ち下さい。初回の起動には10秒程度かかる場合があります。"
+  dist.innerHTML = afterActivateText
   dist.style.backgroundColor = '#ffcccc'
 }
 
 function activateNotice(){
-  const beforeActivateText = "← 文章を入力してください。（例：自動で回るようにしよう）"
-  dist.innerText = beforeActivateText
+  const beforeActivateText = "文章を入力してください。（例：自動で回るようにしよう）"
+  dist.innerHTML = beforeActivateText
   dist.style.backgroundColor = '#efeada'
 }
 
