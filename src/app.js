@@ -4,8 +4,6 @@ import KuromojiAnalyzer from "./kuroshiro-analyzer-kuromoji.min.js"
 let isActive = false
 const src = document.getElementById('inputText')
 const dist = document.getElementById('resulttxt')
-const translate = document.getElementById('translate')
-
 
 const kuroshiro = new Kuroshiro()
 const analyzer = new KuromojiAnalyzer(
@@ -16,12 +14,11 @@ const analyzer = new KuromojiAnalyzer(
 
 async function initrubyize(){
   console.log("initializing...")
-  translate.innerText = "起動中です。少々お待ち下さい。"
+  loadingNotice()
   await kuroshiro.init(analyzer)
   console.log("active!")
-  translate.innerText = "ルビを付けた記法を表示する"
+  activateNotice()
   isActive = true
-  
 }
 initrubyize()
 
@@ -30,36 +27,35 @@ async function rubyize(string){
   result = result.replace(/<ruby>/g,'[')
   result = result.replace(/<rp>\(<\/rp><rt>/g,'|')
   result = result.replace(/<\/rt><rp>\)<\/rp><\/ruby>/g,']')
-  console.log(result)
   dist.style.backgroundColor = '#efeada'
   dist.innerText = result
 }
+
 src.addEventListener('input', activateTranslateButton)
 function activateTranslateButton(){
-  if(src.value.length < 1 && isActive){
-    translate.disabled = true;
-  }else{
-    translate.disabled = false;
+  if(src.value.length > 1 && isActive){
+    rubyize(src.value)
   }
+  copybutton.innerText = "結果をコピー"
 }
 
-translate.addEventListener('click', update)
-
-function update(){
-  copybutton.innerText = "結果をコピー"
-  copybutton.disabled = false
-  dist.innerText = "処理中です。少々お待ち下さい....少し待っても表示されない場合、もう一度ボタンを押してください。"
+function loadingNotice(){
+  const afterActivateText = "起動中です。少々お待ち下さい。初回の起動には10秒程度かかる場合があります。"
+  dist.innerText = afterActivateText
   dist.style.backgroundColor = '#ffcccc'
-  rubyize(src.value)
-  console.log(src.value);
+}
+
+function activateNotice(){
+  const beforeActivateText = "← 文章を入力してください。（例：自動で回るようにしよう）"
+  dist.innerText = beforeActivateText
+  dist.style.backgroundColor = '#efeada'
 }
 
 //クリップボードコピー用
 const copybutton = document.getElementById("copybutton")
-copybutton.disabled = true
 copybutton.addEventListener("click", function(e) {
   textSelect()
-  copybutton.innerText = "コピーしました！"
+  copybutton.innerText = "✅コピーしました！"
 })
 
 const textSelect = () => {
