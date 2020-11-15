@@ -1,6 +1,11 @@
 import './main.sass'
 import Kuroshiro from "./kuroshiro.min.js"
 import KuromojiAnalyzer from "./kuroshiro-analyzer-kuromoji.min.js"
+let isActive = false
+const src = document.getElementById('inputText')
+const dist = document.getElementById('resulttxt')
+const translate = document.getElementById('translate')
+
 
 const kuroshiro = new Kuroshiro()
 const analyzer = new KuromojiAnalyzer(
@@ -11,8 +16,12 @@ const analyzer = new KuromojiAnalyzer(
 
 async function initrubyize(){
   console.log("initializing...")
+  translate.innerText = "起動中です。少々お待ち下さい。"
   await kuroshiro.init(analyzer)
   console.log("active!")
+  translate.innerText = "ルビを付けた記法を表示する"
+  isActive = true
+  
 }
 initrubyize()
 
@@ -25,14 +34,9 @@ async function rubyize(string){
   dist.style.backgroundColor = '#efeada'
   dist.innerText = result
 }
-
-const src = document.getElementById('inputText')
-const dist = document.getElementById('resulttxt')
-const translate = document.getElementById('translate')
-
 src.addEventListener('input', activateTranslateButton)
 function activateTranslateButton(){
-  if(src.value.length < 1){
+  if(src.value.length < 1 && isActive){
     translate.disabled = true;
   }else{
     translate.disabled = false;

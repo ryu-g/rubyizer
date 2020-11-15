@@ -14,7 +14,7 @@
     "@babel/polyfill": "^7.12.1"
   },
   "scripts": {
-    "dev": "mkdir dist && cp -r ./dict ./dist && parcel ./src/index.pug --open",
+    "dev": "cp -r ./dict ./dist && parcel ./src/index.pug --open",
     "start": "mkdir dist && cp -r ./dict ./dist && parcel ./src/index.pug --port $PORT",
     "build": "rm -f ./build/*　&& cp -r ./dict ./build && parcel build ./src/index.pug --public-url ./ --no-content-hash -d ./build "
   },
