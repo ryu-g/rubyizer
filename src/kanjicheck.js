@@ -92,6 +92,8 @@ exports.check = (text) => {
   // チェック基準変えている場合は、結果の末尾に注釈つける
   if(count > 0){
     result += '<br><br><span style="color:gray">（小学校6年生までに習っていないものは赤字で示してあります。）</span>';
+  }else{
+    result += '<br><br><span style="color:gray">（この中に小学校で未習得の漢字はありません。👍)</span>';
   }
   count =0
   // 結果を画面に表示
