@@ -23,6 +23,9 @@ var kanji = new RegExp(/[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]/);
 var hs = new RegExp(/[\ud800-\udbff]/);
 var ls = new RegExp(/[\udc00-\udfff]/);
 
+//　赤字の個数をカウント
+let count = 0
+
 // チェック関数
 exports.check = (text) => {
 
@@ -62,7 +65,8 @@ exports.check = (text) => {
       }
       // 習ってない
       else {
-        result += '<span class = "red">' + c + '</span>';
+        result += '<span class = "red">' + c + '</span>'
+        count++
       }
     }
 
@@ -86,8 +90,10 @@ exports.check = (text) => {
   }
 
   // チェック基準変えている場合は、結果の末尾に注釈つける
-  result += '<br><br><span style="color:gray">（小学校6年生までに習っていないものは赤字で示してあります。）</span>';
-
+  if(count > 0){
+    result += '<br><br><span style="color:gray">（小学校6年生までに習っていないものは赤字で示してあります。）</span>';
+  }
+  count =0
   // 結果を画面に表示
   result = result.replace(/\n/g, '<br />');
   return result
