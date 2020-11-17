@@ -1,4 +1,5 @@
 import './main.sass'
+const kanjichecker = require('./kanjicheck.js')
 import Kuroshiro from "./kuroshiro.min.js"
 import KuromojiAnalyzer from "./kuroshiro-analyzer-kuromoji.min.js"
 let isActive = false
@@ -28,7 +29,8 @@ async function rubyize(string){
   result = result.replace(/<rp>\(<\/rp><rt>/g,'|')
   result = result.replace(/<\/rt><rp>\)<\/rp><\/ruby>/g,']')
   dist.style.backgroundColor = '#efeada'
-  dist.innerText = result
+  const kanjichecked = kanjichecker.check(result)
+  dist.innerHTML = kanjichecked
 }
 
 src.addEventListener('input', activateTranslateButton)
@@ -67,3 +69,5 @@ const textSelect = () => {
   const result = document.execCommand("copy");
   return result;
 }
+
+
