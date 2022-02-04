@@ -6,6 +6,9 @@ body
   section
     h1 Rubyizer
   .interface
+    section.modeSwitch
+      input(type = "radio" name = "rubyMode" value = "A" checked)
+      input(type = "radio" name = "rubyMode" value = "B")
     section.controller
       textarea#inputText(cols="60", rows="40", placeholder = 'ここに文章を入力してください。\nルビ付き記法の文章が右側に出力されます。')
     section.resultView

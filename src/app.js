@@ -23,11 +23,24 @@ async function initrubyize(){
 }
 initrubyize()
 
+//kuromojiの機能で排出されるルビタグ記法をQMS用に変換
+//もともとの出力: <ruby>漢字<rp>(</rp><rt>かんじ</rt><rp>)</rp></ruby>
+//変換先の形式: [漢字|かんじ]
 async function rubyize(string){
   let result = await kuroshiro.convert(string, { mode: "furigana", to: "hiragana" })
-  result = result.replace(/<ruby>/g,'[')
-  result = result.replace(/<rp>\(<\/rp><rt>/g,'|')
-  result = result.replace(/<\/rt><rp>\)<\/rp><\/ruby>/g,']')
+  //ここからdefaultQMS用
+  // result = result.replace(/<ruby>/g,'[')
+  // result = result.replace(/<rp>\(<\/rp><rt>/g,'|')
+  // result = result.replace(/<\/rt><rp>\)<\/rp><\/ruby>/g,']')
+  //ここまでdefaultQMS用
+  
+  //ここからTART-QMS用
+  result = result.replace(/<ruby>/g,'')
+  result = result.replace(/<rp>\(<\/rp><rt>/g,'(')
+  result = result.replace(/<\/rt><rp>\)<\/rp><\/ruby>/g,')')
+  //ここまでTART-QMS用
+  
+  
   dist.style.backgroundColor = '#efeada'
   const kanjichecked = kanjichecker.check(result)
   dist.innerHTML = kanjichecked
