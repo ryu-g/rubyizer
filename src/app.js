@@ -48,7 +48,7 @@ function loadingNotice(){
 }
 
 function activateNotice(){
-  const beforeActivateText = "文章を入力してください。（例：自動で回るようにしよう）"
+  const beforeActivateText = "文章を入力してください。（例：綺麗な日本語）"
   dist.innerHTML = beforeActivateText
   dist.style.backgroundColor = '#efeada'
 }

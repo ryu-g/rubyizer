@@ -12,7 +12,7 @@ body
       .resultArea
         pre
           code#resulttxt ← 文章を入力してください。（例：自動で回るようにしよう）
-        button#copybutton 結果をコピー
+        button#copybutton 結果 をコピー
       pre 
         code.sample サンプルテキスト
           |
@@ -28,4 +28,4 @@ body
       p 参考
       a(href="https://orange-factory.com/tool/kanjicheck.html" target = 'blank') 小学生で習う漢字チェッカー
 
-script(src = './app.js')
+script(type = 'module' src = './app.js')

@@ -4,14 +4,14 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "kuroshiro": "^1.1.2",
-    "kuroshiro-analyzer-kuromoji": "^1.1.0",
-    "parcel": "^1.12.4",
-    "pug": "^3.0.0",
-    "sass": "^1.29.0",
     "@babel/core": "^7.12.3",
     "@babel/plugin-transform-runtime": "^7.12.1",
-    "@babel/polyfill": "^7.12.1"
+    "@babel/polyfill": "^7.12.1",
+    "kuroshiro": "^1.1.2",
+    "kuroshiro-analyzer-kuromoji": "^1.1.0",
+    "parcel": "^2.2.1",
+    "pug": "^3.0.0",
+    "sass": "^1.29.0"
   },
   "scripts": {
     "dev": "cp -r ./dict ./dist && parcel ./src/index.pug --open",
@@ -19,5 +19,10 @@
     "build": "rm -f ./build/*　&& cp -r ./dict ./build && parcel build ./src/index.pug --public-url ./ --no-content-hash -d ./build "
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.11",
+    "@parcel/transformer-pug": "^2.2.1",
+    "@parcel/transformer-sass": "^2.2.1"
+  }
 }
