@@ -7,11 +7,16 @@ body
     h1 Rubyizer
       form.modeSwitcher
         p#currentModeDisplay 現在選択されているルビ振りモード
-        input(type = "radio" id = "rubyModeA" name = "rubyMode" value = 1 checked)
-        label(for="rubyModeA") modeA
-
-        input(type = "radio" id = "rubyModeB" name = "rubyMode" value = 2)
-        label(for="rubyModeB") modeB
+        .modeButtons
+          .modeList
+            input(type = "radio" id = "rubyModeA" name = "rubyMode" value = 1 checked)
+            label(for="rubyModeA") [漢字|かんじ]
+          .modeList
+            input(type = "radio" id = "rubyModeB" name = "rubyMode" value = 2)
+            label(for="rubyModeB") 漢字(かんじ)
+          .modeList
+            input(type = "radio" id = "rubyModeC" name = "rubyMode" value = 3)
+            label(for="rubyModeC") &lt;ruby&gt;漢字&lt;rp&gt;(&lt;/rp&gt;&lt;rt&gt;かんじ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;
   .interface
     section.controller
       textarea#inputText(cols="60", rows="40", placeholder = 'ここに文章を入力してください。\nルビ付き記法の文章が右側に出力されます。')
@@ -23,10 +28,11 @@ body
       pre 
         code.sample サンプルテキスト
           |
+          |日本の教育において学校教育とは、狭義には、学校教育法の第1条に規定する学校（一条校）で行われるものを指す。
+          |具体的には、幼稚園、小学校、中学校、高等学校、大学などが代表的な学校であり、6歳から15歳までの時期（学齢期）が義務教育である。
           |
-          | 物事がグローバルな基準で動いている世の中において、教育は国や地域で細分化・最適化された数少ない分野となって残っています。
-          | インターネットが世界の末端まで普及していく中で、国や地域ごとに特色のある教育に加え、STEM教育※のようにグローバルに統一された教育もまた一つの大きな流れとなって、生活に浸透してきています。
-          | 誰もが簡単に教育を受けられるように、誰もが競い合い、学び合えるように、アプリやサービスの枠を超えた新しい教育インフラを創り上げることが我々のミッションです。
+          |ただし、狭義の学校教育（1条校）に該当しなくても、学校教育に類するとされる教育の場も現代の日本では重要な意味をもっている。
+          |特に専修学校や各種学校は、学校教育法第1条には規定されていないものの、学校教育法の中に規定があるため、学校教育として扱われている。
       pre   
         code.sample 精度について：現在判明している注意点
           |

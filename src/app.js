@@ -7,7 +7,9 @@ const src = document.getElementById('inputText')
 const dist = document.getElementById('resulttxt')
 let currentModeDisplay = document.getElementById('currentModeDisplay')
 let currentMode = 1
+
 const modeSwitcher = document.querySelector(".modeSwitcher")
+
 modeSwitcher.addEventListener("click", ()=>{
   const data = new FormData(modeSwitcher)
   let output = 0
@@ -33,6 +35,7 @@ async function initrubyize(){
   activateNotice()
   isActive = true
 }
+
 initrubyize()
 
 //kuromojiの機能で排出されるルビタグ記法をQMS用に変換
@@ -53,7 +56,7 @@ async function rubyize(string){
     result = result.replace(/<rp>\(<\/rp><rt>/g,'(')
     result = result.replace(/<\/rt><rp>\)<\/rp><\/ruby>/g,')')
     //ここまでTART-QMS用
-  }
+  }else if(currentMode == 3){}
   
   dist.style.backgroundColor = '#efeada'
   const kanjichecked = kanjichecker.check(result)
@@ -61,6 +64,7 @@ async function rubyize(string){
 }
 
 src.addEventListener('input', activateTranslateButton)
+modeSwitcher.addEventListener('click', activateTranslateButton)
 function activateTranslateButton(){
   if(src.value.length > 1 && isActive){
     rubyize(src.value)
