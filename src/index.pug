@@ -5,10 +5,14 @@ head
 body
   section
     h1 Rubyizer
+      form.modeSwitcher
+        p#currentModeDisplay 現在選択されているルビ振りモード
+        input(type = "radio" id = "rubyModeA" name = "rubyMode" value = 1 checked)
+        label(for="rubyModeA") modeA
+
+        input(type = "radio" id = "rubyModeB" name = "rubyMode" value = 2)
+        label(for="rubyModeB") modeB
   .interface
-    section.modeSwitch
-      input(type = "radio" name = "rubyMode" value = "A" checked)
-      input(type = "radio" name = "rubyMode" value = "B")
     section.controller
       textarea#inputText(cols="60", rows="40", placeholder = 'ここに文章を入力してください。\nルビ付き記法の文章が右側に出力されます。')
     section.resultView

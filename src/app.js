@@ -5,6 +5,18 @@ import KuromojiAnalyzer from "./kuroshiro-analyzer-kuromoji.min.js"
 let isActive = false
 const src = document.getElementById('inputText')
 const dist = document.getElementById('resulttxt')
+let currentModeDisplay = document.getElementById('currentModeDisplay')
+let currentMode = 1
+const modeSwitcher = document.querySelector(".modeSwitcher")
+modeSwitcher.addEventListener("click", ()=>{
+  const data = new FormData(modeSwitcher)
+  let output = 0
+  for (const entry of data) {
+    output = Number(entry[1])
+  }
+  currentMode = output
+  currentModeDisplay.innerText=`現在のモード：${output}`
+})
 
 const kuroshiro = new Kuroshiro()
 const analyzer = new KuromojiAnalyzer(
@@ -27,19 +39,21 @@ initrubyize()
 //もともとの出力: <ruby>漢字<rp>(</rp><rt>かんじ</rt><rp>)</rp></ruby>
 //変換先の形式: [漢字|かんじ]
 async function rubyize(string){
+  console.log(currentMode)
   let result = await kuroshiro.convert(string, { mode: "furigana", to: "hiragana" })
-  //ここからdefaultQMS用
-  // result = result.replace(/<ruby>/g,'[')
-  // result = result.replace(/<rp>\(<\/rp><rt>/g,'|')
-  // result = result.replace(/<\/rt><rp>\)<\/rp><\/ruby>/g,']')
-  //ここまでdefaultQMS用
-  
-  //ここからTART-QMS用
-  result = result.replace(/<ruby>/g,'')
-  result = result.replace(/<rp>\(<\/rp><rt>/g,'(')
-  result = result.replace(/<\/rt><rp>\)<\/rp><\/ruby>/g,')')
-  //ここまでTART-QMS用
-  
+  if(currentMode == 1){
+    //ここからdefaultQMS用
+    result = result.replace(/<ruby>/g,'[')
+    result = result.replace(/<rp>\(<\/rp><rt>/g,'|')
+    result = result.replace(/<\/rt><rp>\)<\/rp><\/ruby>/g,']')
+    //ここまでdefaultQMS用
+  }else if(currentMode == 2){
+    //ここからTART-QMS用
+    result = result.replace(/<ruby>/g,'')
+    result = result.replace(/<rp>\(<\/rp><rt>/g,'(')
+    result = result.replace(/<\/rt><rp>\)<\/rp><\/ruby>/g,')')
+    //ここまでTART-QMS用
+  }
   
   dist.style.backgroundColor = '#efeada'
   const kanjichecked = kanjichecker.check(result)
@@ -79,8 +93,8 @@ const textSelect = () => {
   rng.selectNodeContents(element)
   window.getSelection().removeAllRanges()　//selectionの中身を初期化しないと、連続使用にリロードが必用になってしまう
   window.getSelection().addRange(rng)
-  const result = document.execCommand("copy");
-  return result;
+  const result = document.execCommand("copy")
+  return result
 }
 
 
