@@ -8,15 +8,30 @@ body
       form.modeSwitcher
         p#currentModeDisplay 現在選択されているルビ振りモード
         .modeButtons
-          .modeList
+          .modeListItem
             input(type = "radio" id = "rubyModeA" name = "rubyMode" value = 1 checked)
             label(for="rubyModeA") [漢字|かんじ]
-          .modeList
+          .modeListItem
             input(type = "radio" id = "rubyModeB" name = "rubyMode" value = 2)
             label(for="rubyModeB") 漢字(かんじ)
-          .modeList
+          .modeListItem
             input(type = "radio" id = "rubyModeC" name = "rubyMode" value = 3)
             label(for="rubyModeC") &lt;ruby&gt;漢字&lt;rp&gt;(&lt;/rp&gt;&lt;rt&gt;かんじ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;
+          .modeListItem
+            input(type = "radio" id = "rubyModeD" name = "rubyMode" value = 4)
+            label(for="rubyModeD") 検証中
+          .modeListItem
+            input(type = "radio" id = "rubyModeE" name = "rubyMode" value = 5)
+            label(for="rubyModeE") 検証中
+          .modeListItem
+            input(type = "radio" id = "rubyModeF" name = "rubyMode" value = 5)
+            label(for="rubyModeF") 検証中
+          .modeListItem
+            input(type = "radio" id = "rubyModeG" name = "rubyMode" value = 6)
+            label(for="rubyModeG") 検証中
+          
+          
+          
   .interface
     section.controller
       textarea#inputText(cols="60", rows="40", placeholder = 'ここに文章を入力してください。\nルビ付き記法の文章が右側に出力されます。')

@@ -41,9 +41,12 @@ initrubyize()
 //kuromojiの機能で排出されるルビタグ記法をQMS用に変換
 //もともとの出力: <ruby>漢字<rp>(</rp><rt>かんじ</rt><rp>)</rp></ruby>
 //変換先の形式: [漢字|かんじ]
+////rubyizeはボタンクリック時・テキスト入力時に都度走る
 async function rubyize(string){
   console.log(currentMode)
   let result = await kuroshiro.convert(string, { mode: "furigana", to: "hiragana" })
+  let testStrings = await kuroshiro.convert("美しい日本語と魑魅魍魎の民たちの狭義の戦争の取り扱い", { mode: "furigana", to: "hiragana" })
+  console.log(testStrings)
   if(currentMode == 1){
     //ここからdefaultQMS用
     result = result.replace(/<ruby>/g,'[')
@@ -56,7 +59,13 @@ async function rubyize(string){
     result = result.replace(/<rp>\(<\/rp><rt>/g,'(')
     result = result.replace(/<\/rt><rp>\)<\/rp><\/ruby>/g,')')
     //ここまでTART-QMS用
-  }else if(currentMode == 3){}
+  }else if(currentMode == 3){
+    //HTML形式で吐き出し
+  }else if(currentMode == 4){
+    console.log(`ruby mode is ${currentMode} now.`)
+    result = string
+  }
+
   
   dist.style.backgroundColor = '#efeada'
   const kanjichecked = kanjichecker.check(result)

@@ -8,7 +8,7 @@ const hisshu = {
 	'6':'胃異遺域宇映延沿恩我灰拡革閣割株干巻看簡危机揮貴疑吸供胸郷勤筋系敬警劇激穴券絹権憲源厳己呼誤后孝皇紅降鋼刻穀骨困砂座済裁策冊蚕至私姿視詞誌磁射捨尺若樹収宗就衆従縦縮熟純処署諸除承将傷障蒸針仁垂推寸盛聖誠舌宣専泉洗染銭善奏窓創装層操蔵臓存尊退宅担探誕段暖値宙忠著庁頂腸潮賃痛敵展討党糖届難乳認納脳派拝背肺俳班晩否批秘俵腹奮並陛閉片補暮宝訪亡忘棒枚幕密盟模訳郵優預幼欲翌乱卵覧裏律臨朗論'
 }
 // 漢字（Unicode的に言うCJK統合漢字の範囲）を表す正規表現
-const kanji = new RegExp(/[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]/);
+const kanji = new RegExp(/[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]/)
 
 // 赤字の個数をカウント
 let count = 0
@@ -24,24 +24,24 @@ exports.check = (text) => {
 
   // 各学年のデータを連結した文字列を作る
   for (let i = 1; i <= limit; i++) {
-    ok += hisshu[i];
+    ok += hisshu[i]
   }
 
   // チェック対象テキスト取得
-  text = text.replace(/&/g, '&amp;').replace(/>/g, '&gt;').replace(/</g, '&lt;');
+  text = text.replace(/&/g, '&amp;').replace(/>/g, '&gt;').replace(/</g, '&lt;')
 
   // 結果格納用
-  let result = "";
+  let result = ""
 
   // チェック対象を1文字ずつ確認しながら、resultに投入
   let chars = text.split('');
   for (let i = 0; i < chars.length; i++) {
-    let c = chars[i];
+    let c = chars[i]
     // 漢字だったら
     if (c.match(kanji)) {
       // 習ってる
       if (ok.match(c)) {
-        result += c;
+        result += c
       }
       // 習ってない
       else {
@@ -50,21 +50,21 @@ exports.check = (text) => {
       }
     }
     else {
-      result += c;
+      result += c
     }
   }
 
   // チェック基準変えている場合は、結果の末尾に注釈つける
   if(count > 0){
-    result += '<br><br><span style="color:gray">（小学校6年生までに習っていないものは赤字で示してあります。）</span>';
+    result += '<br><br><span style="color:gray">（小学校6年生までに習っていないものは赤字で示してあります。）</span>'
   }else{
-    result += '<br><br><span style="color:gray">（この中に小学校で未習得の漢字はありません。👍)</span>';
+    result += '<br><br><span style="color:gray">（この中に小学校で未習得の漢字はありません。👍)</span>'
   }
 
   //次回実行時用にカウントをリセット
   count = 0
 
   // 結果を画面に表示
-  result = result.replace(/\n/g, '<br />');
+  result = result.replace(/\n/g, '<br />')
   return result
 }

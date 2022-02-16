@@ -17,27 +17,26 @@ form
     font-size: 18px
   .modeButtons
     display: flex
+    flex-wrap: wrap
     font-size: 16px
-    label
-      padding: 10px
-      margin: 5px
-    input[type="radio"]
-      display: none
-    input[type="radio"] + label
-      background: #fff
-      color: #aaa
+    .modeListItem
       height: 40px
-      width: 350px
-      border: solid 1px #333
-      border-radius: 30px 30px
-    input[type="radio"]:checked + label
-      background: #efeada
-      color: #000
-      font-weight: 400
-      height: 40px
-      width: 344px
-      border: solid 2px #333
-      border-radius: 30px 30px
+      label
+        padding: 10px
+        margin: 5px
+      input[type="radio"]
+        display: none
+      input[type="radio"] + label
+        background: #fff
+        color: #aaa
+        border: solid 1px #333
+        border-radius: 30px 30px
+      input[type="radio"]:checked + label
+        background: #efeada
+        color: #000
+        font-weight: 400
+        border: solid 2px #333
+        border-radius: 30px 30px
 
 
 
