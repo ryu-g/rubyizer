@@ -16,7 +16,7 @@
   "scripts": {
     "dev": "cp -r ./dict ./dist && parcel ./src/index.pug --open",
     "start": "[^] dist && cp -r ./dict ./dist && parcel ./src/index.pug --port $PORT",
-    "build": "rm -r ./build/* && cp -r ./dict ./build && parcel build ./src/index.pug",
+    "build": "rm -r ./dist/* && parcel build ./src/index.pug && cp -r ./dict ./dist",
     "build_sub": "rm -r ./build/* && cp -r ./dict ./build && parcel build ./src/index.pug --no-minify --no-content-hash ./build/"
   },
   "author": "",
