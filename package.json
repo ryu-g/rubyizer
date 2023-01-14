@@ -9,15 +9,15 @@
     "@babel/polyfill": "^7.12.1",
     "kuroshiro": "^1.1.2",
     "kuroshiro-analyzer-kuromoji": "^1.1.0",
-    "parcel": "^2.2.1",
+    "parcel": "^2.8.2",
     "pug": "^3.0.0",
     "sass": "^1.29.0"
   },
   "scripts": {
     "dev": "cp -r ./dict ./dist && parcel ./src/index.pug --open",
     "start": "[^] dist && cp -r ./dict ./dist && parcel ./src/index.pug --port $PORT",
-    "build": "rm -r ./build/* && cp -r ./dict ./build && parcel build ./src/index.pug --public-url ./ --no-content-hash ./build ",
-    "build_sub": "cp -r ./dict ./build && parcel build ./src/index.pug --public-url ./ --no-content-hash ./build "
+    "build": "rm -r ./build/* && cp -r ./dict ./build && parcel build ./src/index.pug --no-minify",
+    "build_sub": "rm -r ./build/* && cp -r ./dict ./build && parcel build ./src/index.pug --no-minify --public-url ./ --no-content-hash ./build"
   },
   "author": "",
   "license": "ISC",
