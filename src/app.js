@@ -38,15 +38,14 @@ async function initrubyize(){
 
 initrubyize()
 
-//kuromojiの機能で排出されるルビタグ記法をQMS用に変換
+//kuromojiの機能で排出されるルビタグ記法を変換
 //もともとの出力: <ruby>漢字<rp>(</rp><rt>かんじ</rt><rp>)</rp></ruby>
 //変換先の形式: [漢字|かんじ]
 ////rubyizeはボタンクリック時・テキスト入力時に都度走る
 async function rubyize(string){
   console.log(currentMode)
   let result = await kuroshiro.convert(string, { mode: "furigana", to: "hiragana" })
-  let testStrings = await kuroshiro.convert("美しい日本語と魑魅魍魎の民たちの狭義の戦争の取り扱い", { mode: "furigana", to: "hiragana" })
-  console.log(testStrings)
+  // console.log(testStrings) デバッグ用
   if(currentMode == 1){
     //ここからdefaultQMS用
     result = result.replace(/<ruby>/g,'[')
@@ -88,7 +87,7 @@ function loadingNotice(){
 }
 
 function activateNotice(){
-  const beforeActivateText = "文章を入力してください。（例：綺麗な日本語）"
+  const beforeActivateText = "[入力|にゅうりょく]した[文章|ぶんしょう]にルビを[付|つ]けるよ"
   dist.innerHTML = beforeActivateText
   dist.style.backgroundColor = '#efeada'
 }
@@ -97,7 +96,7 @@ function activateNotice(){
 const copybutton = document.getElementById("copybutton")
 copybutton.addEventListener("click", function(e) {
   textSelect()
-  copybutton.innerText = "✅コピーしました！"
+  copybutton.innerText = "コピーしました！"
 })
 
 const textSelect = () => {
