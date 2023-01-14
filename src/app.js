@@ -43,7 +43,6 @@ initrubyize()
 //変換先の形式: [漢字|かんじ]
 ////rubyizeはボタンクリック時・テキスト入力時に都度走る
 async function rubyize(string){
-  console.log(currentMode)
   let result = await kuroshiro.convert(string, { mode: "furigana", to: "hiragana" })
   // console.log(testStrings) デバッグ用
   if(currentMode == 1){
@@ -103,7 +102,7 @@ const textSelect = () => {
   let element= document.getElementById("resulttxt")
   let rng = document.createRange()
   rng.selectNodeContents(element)
-  window.getSelection().removeAllRanges()　//selectionの中身を初期化しないと、連続使用にリロードが必用になってしまう
+  window.getSelection().removeAllRanges() //selectionの中身を初期化しないと、連続使用にリロードが必用になってしまう
   window.getSelection().addRange(rng)
   const result = document.execCommand("copy")
   return result
