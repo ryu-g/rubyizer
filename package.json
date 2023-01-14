@@ -2,11 +2,11 @@
   "name": "rubyizer",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "dependencies": {
     "@babel/core": "^7.12.3",
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/polyfill": "^7.12.1",
+    "@babel/runtime": "^7.20.7",
     "kuroshiro": "^1.1.2",
     "kuroshiro-analyzer-kuromoji": "^1.1.0",
     "parcel": "^2.8.2",
@@ -16,15 +16,14 @@
   "scripts": {
     "dev": "cp -r ./dict ./dist && parcel ./src/index.pug --open",
     "start": "[^] dist && cp -r ./dict ./dist && parcel ./src/index.pug --port $PORT",
-    "build": "rm -r ./build/* && cp -r ./dict ./build && parcel build ./src/index.pug",
-    "build_sub": "rm -r ./build/* && cp -r ./dict ./build && parcel build ./src/index.pug --no-minify --public-url ./ --no-content-hash ./build"
+    "build": "rm -r ./build/* && cp -r ./dict ./build && parcel build ./src/index.pug --no-content-hash ./build",
+    "build_sub": "rm -r ./build/* && cp -r ./dict ./build && parcel build ./src/index.pug --no-minify --no-content-hash ./build/"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/preset-env": "^7.16.11",
-    "@parcel/transformer-less": "2.4.0",
-    "@parcel/transformer-pug": "2.8.1",
-    "@parcel/transformer-sass": "2.8.1"
+    "@parcel/transformer-pug": "^2.8.2",
+    "@parcel/transformer-sass": "^2.8.2"
   }
 }
