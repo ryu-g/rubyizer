@@ -16,14 +16,15 @@
   "scripts": {
     "dev": "cp -r ./dict ./dist && parcel ./src/index.pug --open",
     "start": "[^] dist && cp -r ./dict ./dist && parcel ./src/index.pug --port $PORT",
-    "build": "rm -r ./build/* && cp -r ./dict ./build && parcel build ./src/index.pug --no-minify",
+    "build": "rm -r ./build/* && cp -r ./dict ./build && parcel build ./src/index.pug",
     "build_sub": "rm -r ./build/* && cp -r ./dict ./build && parcel build ./src/index.pug --no-minify --public-url ./ --no-content-hash ./build"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/preset-env": "^7.16.11",
-    "@parcel/transformer-pug": "^2.2.1",
-    "@parcel/transformer-sass": "^2.2.1"
+    "@parcel/transformer-less": "2.4.0",
+    "@parcel/transformer-pug": "2.8.1",
+    "@parcel/transformer-sass": "2.8.1"
   }
 }
