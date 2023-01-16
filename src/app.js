@@ -5,6 +5,7 @@ import KuromojiAnalyzer from "./kuroshiro-analyzer-kuromoji.min.js"
 let isActive = false
 const src = document.getElementById('inputText')
 const dist = document.getElementById('resulttxt')
+const message = document.getElementById('message')
 let currentModeDisplay = document.getElementById('currentModeDisplay')
 let currentMode = 1
 
@@ -66,8 +67,11 @@ async function rubyize(string){
 
   
   dist.style.backgroundColor = '#efeada'
-  const kanjichecked = kanjichecker.check(result)
+  const kanjichecked = kanjichecker.check(result)[0]
+  const judgedmessage = kanjichecker.check(result)[1]
+  console.log(judgedmessage)
   dist.innerHTML = kanjichecked
+  message.innerHTML = judgedmessage
 }
 
 src.addEventListener('input', activateTranslateButton)

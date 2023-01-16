@@ -1,4 +1,4 @@
-//引用　from https://orange-factory.com/tool/kanjicheck.html
+//引用 from https://orange-factory.com/tool/kanjicheck.html
 const hisshu = {
 	'1':'一右雨円王音下火花貝学気九休玉金空月犬見五口校左三山子四糸字耳七車手十出女小上森人水正生青夕石赤千川先早草足村大男竹中虫町天田土二日入年白八百文木本名目立力林六',
 	'2':'引羽雲園遠何科夏家歌画回会海絵外角楽活間丸岩顔汽記帰弓牛魚京強教近兄形計元言原戸古午後語工公広交光考行高黄合谷国黒今才細作算止市矢姉思紙寺自時室社弱首秋週春書少場色食心新親図数西声星晴切雪船線前組走多太体台地池知茶昼長鳥朝直通弟店点電刀冬当東答頭同道読内南肉馬売買麦半番父風分聞米歩母方北毎妹万明鳴毛門夜野友用曜来里理話',
@@ -32,6 +32,7 @@ exports.check = (text) => {
 
   // 結果格納用
   let result = ""
+  let judge = ""
 
   // チェック対象を1文字ずつ確認しながら、resultに投入
   let chars = text.split('');
@@ -56,9 +57,9 @@ exports.check = (text) => {
 
   // チェック基準変えている場合は、結果の末尾に注釈つける
   if(count > 0){
-    result += '<br><br><span style="color:gray">（小学校6年生までに習っていないものは赤字で示してあります。）</span>'
+    judge += '<span style="color:gray">（小学校6年生までに習っていないものは赤字で示してあります。）</span>'
   }else{
-    result += '<br><br><span style="color:gray">（この中に小学校で未習得の漢字はありません。👍)</span>'
+    judge += '<span style="color:gray">（この中に小学校で未習得の漢字はありません。👍)</span>'
   }
 
   //次回実行時用にカウントをリセット
@@ -66,5 +67,5 @@ exports.check = (text) => {
 
   // 結果を画面に表示
   result = result.replace(/\n/g, '<br />')
-  return result
+  return [result,judge]
 }

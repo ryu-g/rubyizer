@@ -1,6 +1,7 @@
 body
   width: 95%
   margin:  0 auto
+  background-color: #fff
 
 .interface
   display: flex
@@ -24,6 +25,9 @@ form
       label
         padding: 10px
         margin: 5px
+        &:hover
+          outline: solid 2px #333
+          outline-offset: -2px
       input[type="radio"]
         display: none
       input[type="radio"] + label
@@ -35,7 +39,8 @@ form
         background: #efeada
         color: #000
         font-weight: 400
-        border: solid 2px #333
+        outline: solid 2px #333
+        outline-offset: -2px
         border-radius: 30px 30px
 
 .controller
@@ -78,13 +83,12 @@ span#loading
   p
     margin-top: 20px
   pre
-    width: 100%
     white-space: pre-wrap
+    margin: 0
     code
       transition: .4s
       font-family: 'Cica-Regular'
       line-height: 1.6em
-      width: 90%
       height: auto + 10px
       display: block
       padding: 20px
