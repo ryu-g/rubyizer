@@ -69,7 +69,6 @@ async function rubyize(string){
   dist.style.backgroundColor = '#efeada'
   const kanjichecked = kanjichecker.check(result)[0]
   const judgedmessage = kanjichecker.check(result)[1]
-  console.log(judgedmessage)
   dist.innerHTML = kanjichecked
   message.innerHTML = judgedmessage
 }
