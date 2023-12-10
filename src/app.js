@@ -37,7 +37,7 @@ async function initrubyize(){
   isActive = true
 }
 
-initrubyize()
+initrubyize() // initialize dictionary
 
 //kuromojiの機能で排出されるルビタグ記法を変換
 //もともとの出力: <ruby>漢字<rp>(</rp><rt>かんじ</rt><rp>)</rp></ruby>
@@ -46,18 +46,16 @@ initrubyize()
 async function rubyize(string){
   let result = await kuroshiro.convert(string, { mode: "furigana", to: "hiragana" })
   // console.log(testStrings) デバッグ用
-  if(currentMode == 1){
-    //ここからdefaultQMS用
+  if(currentMode == 1){ //square brackets ruby mode
     result = result.replace(/<ruby>/g,'[')
     result = result.replace(/<rp>\(<\/rp><rt>/g,'|')
     result = result.replace(/<\/rt><rp>\)<\/rp><\/ruby>/g,']')
-    //ここまでdefaultQMS用
-  }else if(currentMode == 2){
-    //ここからTART-QMS用
+
+  }else if(currentMode == 2){ //round brackets ruby mode
     result = result.replace(/<ruby>/g,'')
     result = result.replace(/<rp>\(<\/rp><rt>/g,'(')
     result = result.replace(/<\/rt><rp>\)<\/rp><\/ruby>/g,')')
-    //ここまでTART-QMS用
+
   }else if(currentMode == 3){
     //HTML形式で吐き出し
   }else if(currentMode == 4){
@@ -73,6 +71,7 @@ async function rubyize(string){
   message.innerHTML = judgedmessage
 }
 
+//
 src.addEventListener('input', activateTranslateButton)
 modeSwitcher.addEventListener('click', activateTranslateButton)
 function activateTranslateButton(){
@@ -82,12 +81,14 @@ function activateTranslateButton(){
   copybutton.innerText = "結果をコピー"
 }
 
+//displpay loading message
 function loadingNotice(){
   const afterActivateText = "<span id = 'loading'>★</span>起動中です。少々お待ち下さい。初回の起動には10秒程度かかる場合があります。"
   dist.innerHTML = afterActivateText
   dist.style.backgroundColor = '#ffcccc'
 }
 
+//then activated rubyizer, diaplay ruby sample to user
 function activateNotice(){
   const beforeActivateText = "[入力|にゅうりょく]した[文章|ぶんしょう]にルビを[付|つ]けるよ"
   dist.innerHTML = beforeActivateText
@@ -101,6 +102,7 @@ copybutton.addEventListener("click", function(e) {
   copybutton.innerText = "コピーしました！"
 })
 
+//func when clicked copybutton
 const textSelect = () => {
   let element= document.getElementById("resulttxt")
   let rng = document.createRange()
