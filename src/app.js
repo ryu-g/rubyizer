@@ -30,7 +30,7 @@ newLineCodeSwitcher.addEventListener("click", ()=>{
     escape_output = Number(entry[1])
   }
   currentEscapeMode = escape_output
-  currentEscapeModeDisplay.innerText=`現在の改行コード：${escape_output}`
+  // currentEscapeModeDisplay.innerText=`現在の改行コード：${escape_output}`
   }
 )
 
