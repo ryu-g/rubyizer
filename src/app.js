@@ -37,6 +37,23 @@ async function initrubyize(){
   isActive = true
 }
 
+const devcheck = () => {
+  const current_path = window.location
+  if ( "host" in current_path ){
+    console.log("dev")
+    document.getElementsByTagName("body")[0].style.background = "#f9f9f9";
+    document.getElementsByTagName("h1")[0].innerText += "(dev)"
+  } else if ("netlify" in current_path.href ){
+    console.log("published")
+  } else {
+    console.log("hello")
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () =>{
+  devcheck()
+}) //onloadをオーバーライドしないように避けておく
+
 initrubyize() // initialize dictionary
 
 //kuromojiの機能で排出されるルビタグ記法を変換
