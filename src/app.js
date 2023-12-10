@@ -94,8 +94,21 @@ async function rubyize(string){
     console.log(`ruby mode is ${currentMode} now.`)
     result = string
   }
-
   
+  if(currentEscapeMode == 1 ){
+    //なにもしない
+  }else if( currentEscapeMode == 2){
+    result = result.replace(/\n/g,"\\\\n")
+  }else if( currentEscapeMode == 3){
+    result = result.replace(/\n/g,"<br>")
+  }else if( currentEscapeMode == 4){
+    result = result.replace(/\n/g,"\\r")
+  }else if( currentEscapeMode == 5){
+    result = result.replace(/\n/g,"\\n")
+  }else if( currentEscapeMode == 6){
+    result = result.replace(/\n/g,"\\r\\n")
+  }
+
   dist.style.backgroundColor = '#efeada'
   const kanjichecked = kanjichecker.check(result)[0]
   const judgedmessage = kanjichecker.check(result)[1]
@@ -106,6 +119,7 @@ async function rubyize(string){
 //
 src.addEventListener('input', activateTranslateButton)
 modeSwitcher.addEventListener('click', activateTranslateButton)
+newLineCodeSwitcher.addEventListener('click', activateTranslateButton)
 function activateTranslateButton(){
   if(src.value.length > 1 && isActive){
     rubyize(src.value)
