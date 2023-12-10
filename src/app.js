@@ -41,7 +41,6 @@ const devcheck = () => {
   const current_path = window.location
   console.log(current_path)
   const hrefContent = ""+current_path.href
-  console.log(hrefContent.indexOf("localhost"))
   if ( hrefContent.indexOf("localhost") > 0){
     console.log("dev")
     document.getElementsByTagName("body")[0].style.background = "#f9f9f9";
