@@ -8,18 +8,31 @@ const dist = document.getElementById('resulttxt')
 const message = document.getElementById('message')
 let currentModeDisplay = document.getElementById('currentModeDisplay')
 let currentMode = 1
+let currentEscapeModeDisplay = document.getElementById('currentEscapeModeDisplay')
+let currentEscapeMode = 1
 
 const modeSwitcher = document.querySelector(".modeSwitcher")
-
 modeSwitcher.addEventListener("click", ()=>{
-  const data = new FormData(modeSwitcher)
-  let output = 0
-  for (const entry of data) {
-    output = Number(entry[1])
+  const mode_data = new FormData(modeSwitcher)
+  let mode_output = 0
+  for (const entry of mode_data) {
+    mode_output = Number(entry[1])
   }
-  currentMode = output
-  currentModeDisplay.innerText=`現在のモード：${output}`
+  currentMode = mode_output
+  // currentModeDisplay.innerText=`現在のルビ振りモード：${mode_output}`
 })
+
+const newLineCodeSwitcher = document.querySelector(".newLineCodeSwitcher")
+newLineCodeSwitcher.addEventListener("click", ()=>{
+  const escape_data = new FormData(newLineCodeSwitcher)
+  let escape_output = 0
+  for (const entry of escape_data) {
+    escape_output = Number(entry[1])
+  }
+  currentEscapeMode = escape_output
+  currentEscapeModeDisplay.innerText=`現在の改行コード：${escape_output}`
+  }
+)
 
 const kuroshiro = new Kuroshiro()
 const analyzer = new KuromojiAnalyzer(
@@ -43,7 +56,7 @@ const devcheck = () => {
   const hrefContent = ""+current_path.href
   if ( hrefContent.indexOf("localhost") > 0){
     console.log("dev")
-    document.getElementsByTagName("body")[0].style.background = "#f9f9f9";
+    document.getElementsByTagName("body")[0].style.background = "#f2f2f2";
     document.getElementsByTagName("h1")[0].innerText += "(dev)"
   } else if (hrefContent.indexOf("netlify") > 0 ){
     console.log("published")

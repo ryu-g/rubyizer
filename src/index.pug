@@ -18,10 +18,27 @@ body
         .modeListItem
           input(type = "radio" id = "rubyModeC" name = "rubyMode" value = 3)
           label(for="rubyModeC") &lt;ruby&gt;漢字&lt;rp&gt;(&lt;/rp&gt;&lt;rt&gt;かんじ&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;&lt;/ruby&gt;
-      .modeButtons
-        .modeListItem
-          input(type = "radio" id = "rubyModeA" name = "rubyMode" value = 1 checked)
-          label(for="rubyModeA") [漢字|かんじ]
+    form.newLineCodeSwitcher
+      p#currentEscapeModeDisplay 現在の改行コード
+      .escapeOptions
+        .escapeOptionListItem
+          input(type = "radio" id = "escapeModeA" name = "escapeMode" value = 1 checked)
+          label(for="escapeModeA") 指定なし
+        .escapeOptionListItem
+          input(type = "radio" id = "escapeModeB" name = "escapeMode" value = 2)
+          label(for="escapeModeB") Json: \\n
+        .escapeOptionListItem
+          input(type = "radio" id = "escapeModeC" name = "escapeMode" value = 3)
+          label(for="escapeModeC") HTML: &lt;br&gt;
+        .escapeOptionListItem
+          input(type = "radio" id = "escapeModeD" name = "escapeMode" value = 4)
+          label(for="escapeModeD") CR: \r
+        .escapeOptionListItem
+          input(type = "radio" id = "escapeModeE" name = "escapeMode" value = 5)
+          label(for="escapeModeE") LF: \n 
+        .escapeOptionListItem
+          input(type = "radio" id = "escapeModeF" name = "escapeMode" value = 6)
+          label(for="escapeModeF") CRLF: \r\n
 
   .interface
     section.controller
