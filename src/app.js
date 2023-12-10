@@ -39,11 +39,14 @@ async function initrubyize(){
 
 const devcheck = () => {
   const current_path = window.location
-  if ( "host" in current_path ){
+  console.log(current_path)
+  const hrefContent = ""+current_path.href
+  console.log(hrefContent.indexOf("localhost"))
+  if ( hrefContent.indexOf("localhost") > 0){
     console.log("dev")
     document.getElementsByTagName("body")[0].style.background = "#f9f9f9";
     document.getElementsByTagName("h1")[0].innerText += "(dev)"
-  } else if ("netlify" in current_path.href ){
+  } else if (hrefContent.indexOf("netlify") > 0 ){
     console.log("published")
   } else {
     console.log("hello")
